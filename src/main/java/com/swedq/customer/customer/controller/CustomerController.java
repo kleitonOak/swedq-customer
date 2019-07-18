@@ -19,7 +19,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<Void> createCustomer(@Valid @RequestBody CustomerDTO customerDTO){
         service.save(customerDTO);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{id}")

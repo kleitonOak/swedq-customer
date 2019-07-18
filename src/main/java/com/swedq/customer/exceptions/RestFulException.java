@@ -1,11 +1,13 @@
 package com.swedq.customer.exceptions;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class RestFulException extends RuntimeException {
     private Map<String, Object> properties;
