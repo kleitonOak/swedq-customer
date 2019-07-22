@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
+	id 'com.avast.gradle.docker-compose' version "0.9.4"
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -11,6 +12,7 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -21,4 +23,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 	compile group: 'com.h2database', name: 'h2', version: '1.4.199'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+}
+bootRun {
+	dependsOn(composeUp)
+}
+
+apply plugin: 'docker-compose'
+
+dockerCompose {
+	useComposeFiles = ['./src/main/resources/docker/docker-compose.yml']
 }
